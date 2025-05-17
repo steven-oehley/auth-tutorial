@@ -1,6 +1,8 @@
 import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import LoginBtn from "@/components/auth/login-btn";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -22,6 +24,13 @@ const HomePage = () => {
         <p className='text-lg text-white text-center font-black'>
           A simple auth service
         </p>
+        <div className='flex justify-center'>
+          <LoginBtn>
+            <Button variant='secondary' size='lg' className='cursor-pointer'>
+              Sign In
+            </Button>
+          </LoginBtn>
+        </div>
       </div>
     </main>
   );
