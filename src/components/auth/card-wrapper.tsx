@@ -24,7 +24,7 @@ const CardWrapper = ({
   showSocial,
 }: CardWrapperProps) => {
   return (
-    <Card className='w-full max-w-[400px] shadow-md'>
+    <Card className='w-full max-w-[400px] shadow-md max-h-[600px] overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-primary/20 [&::-webkit-scrollbar-thumb:hover]:bg-primary/40 [&::-webkit-scrollbar-track]:bg-transparent'>
       <CardHeader>
         <Header label={headerLabel} />
       </CardHeader>
