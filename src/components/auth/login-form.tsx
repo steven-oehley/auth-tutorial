@@ -39,10 +39,18 @@ const LoginForm = () => {
     setSuccess("");
 
     startTransition(() => {
-      login(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
-      });
+      login(values)
+        .then((data) => {
+          setError(data?.error);
+          setSuccess(data?.success);
+        })
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        .catch((error) => {
+          // This is actually expected!
+          // The error is intentionally thrown by the server action to
+          // allow NextAuth to handle the redirect after a successful login
+          // No need to do anything here as the user will be redirected
+        });
     });
   };
 

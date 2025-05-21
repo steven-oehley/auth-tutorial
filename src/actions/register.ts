@@ -1,9 +1,9 @@
 "use server";
 import { z } from "zod";
 import { RegisterSchema } from "@/schemas";
-import argon2 from "argon2";
 import { prisma } from "@/lib/prisma";
 import { getUserByEmail } from "@/utils/user";
+import { hashPassword } from "@/utils/hash";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedData = RegisterSchema.safeParse(values);
@@ -16,12 +16,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 
   const { name, email, password } = validatedData.data;
 
-  const hashedPassword = await argon2.hash(password, {
-    type: argon2.argon2id,
-    memoryCost: 2 ** 16,
-    timeCost: 3,
-    parallelism: 1,
-  });
+  const hashedPassword = await hashPassword(password);
 
   const existingUser = await getUserByEmail(email);
 
